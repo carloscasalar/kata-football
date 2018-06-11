@@ -13,7 +13,7 @@ auto-loaded from within the test cases.
 
 ### Alternate install
 
-If you don't want to install php in your system you can install with this command:
+If you don't want to install php in your system you can install this project with this command:
 
     docker run --rm -v /YOUR/LOCAL/PROJECTS/DIR:/opt -w /opt shippingdocker/php-composer:latest composer create-project carloscasalar/kata-football kata-football
     
