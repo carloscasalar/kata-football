@@ -53,5 +53,6 @@ as a quick reference for PHPUnit usage.
 
 # About 
 
-This project structure is based in [matthiasnoback/php-coding-dojo](https://github.com/matthiasnoback/php-coding-dojo)
-and [shipping-docker/php-composer](https://github.com/shipping-docker/php-composer)
+This project structure is based in [matthiasnoback/php-coding-dojo](https://github.com/matthiasnoback/php-coding-dojo).
+
+Also thanks to [shipping-docker/php-composer](https://github.com/shipping-docker/php-composer) for sharing the docker commands.
