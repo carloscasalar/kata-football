@@ -48,7 +48,7 @@ Or you can run the test without install php with docker:
 
 ## PHPUnit cheatsheet
 
-You can use my [PHPUnit cheatsheet](https://github.com/matthiasnoback/workshop-unit-testing/blob/master/cheatsheet.md)
+You can use [matthiasnoback's](https://github.com/matthiasnoback) [PHPUnit cheatsheet](https://github.com/matthiasnoback/workshop-unit-testing/blob/master/cheatsheet.md)
 as a quick reference for PHPUnit usage.
 
 # About 
