@@ -44,7 +44,7 @@ When you first run the tests, PHPStorm might ask you to supply a PHP interpreter
 
 Or you can run the test without install php with docker:
     
-    docker run --rm -v /YOUR/LOCAL/PROJECTS/DIR/kata-football:/opt -w /opt shippingdocker/php-composer:latest composer run-script test 
+    docker run --rm -it -v /YOUR/LOCAL/PROJECTS/DIR/kata-football:/opt -w /opt shippingdocker/php-composer:latest composer run-script test 
 
 ## PHPUnit cheatsheet
 

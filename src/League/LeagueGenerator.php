@@ -3,12 +3,7 @@
     namespace League;
 
     class LeagueGenerator {
-        public function execute() {
-
-            function round_robin(array &$array) {
-                array_unshift($array, array_splice($array, -2, 1)[0]);
-            }
-
+        public function generate(): array {
             $teams = [
                 new Team('The Creative Prowlers'),
                 new Team('The Brute Comets'),
@@ -28,7 +23,7 @@
             $totalRounds = count($teams) - !(count($teams) % 2);
             $matchesPerRound = floor(count($teams) / 2);
             for ($round = 0; $round < $totalRounds; $round++) {
-                round_robin($teams);
+                $this->round_robin($teams);
                 for ($match = 0; $match < $matchesPerRound; $match++) {
                     if ($round % 2) {
                         $homeTeam = $teams[$match];
@@ -44,5 +39,15 @@
                         rand(0, 5));
                 }
             }
+
+            return [
+                'rounds' => $totalRounds,
+                'matchesPerRound' => $matchesPerRound,
+                'matches' => $matches
+            ];
+        }
+
+        private function round_robin(array &$array) {
+            array_unshift($array, array_splice($array, -2, 1)[0]);
         }
     }
