@@ -2,7 +2,7 @@
 
     namespace League;
 
-    class CodeUnderTest {
+    class LeagueGenerator {
         public function execute() {
 
             function round_robin(array &$array) {
