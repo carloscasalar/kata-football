@@ -1,17 +1,9 @@
 <?php
 
-    class LeagueGeneratorTest extends \PHPUnit_Framework_TestCase {
+    class LeagueHarnessTest extends \PHPUnit_Framework_TestCase {
 
         protected function setUp() {
             $this->setFixedRandomSeed();
-        }
-
-        /**
-         * @test
-         */
-        public function origin_code_does_not_fail() {
-            $leagueGenerator = new \League\LeagueGenerator();
-            $leagueGenerator->generate();
         }
 
         /**
@@ -23,7 +15,6 @@
             $matches = $league['matches'];
             $this->assertEquals(66, count($matches));
         }
-
 
         /**
          * @test
