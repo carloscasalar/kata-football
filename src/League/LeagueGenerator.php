@@ -18,44 +18,22 @@
                 new Team('Eager Beluga Whales'),
                 new Team('Ancient Trolls')
             ]);
-            $teams = $league->teams;
-            shuffle($teams);
-            $matches = [];
-            $totalRounds = count($teams) - !(count($teams) % 2);
-            $matchesPerRound = floor(count($teams) / 2);
-            for ($roundIndex = 0; $roundIndex < $totalRounds; $roundIndex++) {
-                $this->round_robin($teams);
-                $numberOfRound = $roundIndex + 1;
 
-                $round = new Round($numberOfRound);
-                for ($match = 0; $match < $matchesPerRound; $match++) {
-                    if ($roundIndex % 2) {
-                        $homeTeam = $teams[$match];
-                        $awayTeam = $teams[count($teams) - 1 - $match];
-                    } else {
-                        $homeTeam = $teams[count($teams) - 1 - $match];
-                        $awayTeam = $teams[$match];
-                    }
-                    $currentMatch = new Match(
-                        $homeTeam,
-                        $awayTeam,
-                        rand(0, 5),
-                        rand(0, 5));
-                    $round->matches[] = $currentMatch;
-                    $matches[] = $currentMatch;
-                }
-                $league->rounds[] = $round;
-            }
+            $league->populateRounds();
+
+            $roundsCount = count($league->rounds);
+            $matchesCount = array_reduce($league->rounds, [$this,'sumAllMatches'], 0);
+            $matchesPerRound = $matchesCount / $roundsCount;
 
             return [
-                'rounds' => $totalRounds,
+                'rounds' => $roundsCount,
                 'matchesPerRound' => $matchesPerRound,
-                'matches' => $matches,
+                'matches' => $matchesCount,
                 'league' => $league
             ];
         }
 
-        private function round_robin(array &$array) {
-            array_unshift($array, array_splice($array, -2, 1)[0]);
+        private function sumAllMatches(int $totalMatchesCount, Round $currentRound){
+            return $totalMatchesCount + count($currentRound->matches);
         }
     }
