@@ -20,21 +20,10 @@
                 $numberOfRound = $roundIndex + 1;
 
                 $round = new Round($numberOfRound);
-                for ($match = 0; $match < $matchesPerRound; $match++) {
-                    if ($roundIndex % 2) {
-                        $homeTeam = $teams[$match];
-                        $awayTeam = $teams[count($teams) - 1 - $match];
-                    } else {
-                        $homeTeam = $teams[count($teams) - 1 - $match];
-                        $awayTeam = $teams[$match];
-                    }
-                    $round->matches[] = new Match(
-                        $homeTeam,
-                        $awayTeam,
-                        rand(0, 5),
-                        rand(0, 5));
-                }
+                $round->populateMatches($teams, $matchesPerRound);
+
                 $this->rounds[] = $round;
+
             }
         }
 
