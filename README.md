@@ -46,6 +46,10 @@ Or you can run the test without install php with docker:
     
     docker run --rm -it -v /YOUR/LOCAL/PROJECTS/DIR/kata-football:/opt -w /opt shippingdocker/php-composer:latest composer run-script test 
 
+To show a list of all tests being launched:    
+    
+    docker run --rm -it -v /YOUR/LOCAL/PROJECTS/DIR/kata-football:/opt -w /opt shippingdocker/php-composer:latest composer run-script test
+
 ## PHPUnit cheatsheet
 
 You can use [matthiasnoback's](https://github.com/matthiasnoback) [PHPUnit cheatsheet](https://github.com/matthiasnoback/workshop-unit-testing/blob/master/cheatsheet.md)

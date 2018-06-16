@@ -70,7 +70,7 @@ This is the initial source code:
 ?>
 ```
 
-This code can be refactored as long as there are test that support them.
+This code can be refactored as long as there are test that support the refactor.
 
 This code generates matches between some teams with a random result for each one.
  
