@@ -14,13 +14,13 @@
         }
 
         public function populateMatches($teams, $numberOfMatches) {
-            for ($match = 0; $match < $numberOfMatches; $match++) {
+            for ($matchIndex = 0; $matchIndex < $numberOfMatches; $matchIndex++) {
                 if ($this->isOddRound()) {
-                    $homeTeam = $teams[$match];
-                    $awayTeam = $teams[count($teams) - 1 - $match];
+                    $homeTeam = $teams[$matchIndex];
+                    $awayTeam = array_reverse($teams)[$matchIndex];
                 } else {
-                    $homeTeam = $teams[count($teams) - 1 - $match];
-                    $awayTeam = $teams[$match];
+                    $homeTeam = array_reverse($teams)[$matchIndex];
+                    $awayTeam = $teams[$matchIndex];
                 }
                 $this->matches[] = new Match(
                     $homeTeam,
