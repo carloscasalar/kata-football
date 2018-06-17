@@ -27,6 +27,19 @@
             }
         }
 
+        public function getTableResultsForRound($numberOfRound): array {
+            $results = array_map(function (Team $team) use($numberOfRound){
+                return $this->getTeamResultForRound($team, $numberOfRound);
+            }, $this->teams);
+
+            $order = new TeamResultOrder();
+            usort($results, function($oneResult, $otherResult) use ($order){
+                return $order->sort($oneResult, $otherResult);
+            });
+
+            return $results;
+        }
+
         public function getTeamResultForRound($team, $numberOfRound): RoundTeamResult {
             $roundsPlayed = array_filter($this->rounds, function (Round $round) use ($numberOfRound){
                return $round->number <= $numberOfRound;
