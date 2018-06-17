@@ -27,7 +27,24 @@
             }
         }
 
+        public function getTeamResultForRound($team, $numberOfRound): RoundTeamResult {
+            $roundsPlayed = array_filter($this->rounds, function (Round $round) use ($numberOfRound){
+               return $round->number <= $numberOfRound;
+            });
+
+            $matchesPlayedByTeam = $this->matchesPlayedByTeamInRounds($team, $roundsPlayed);
+
+            return new RoundTeamResult($team, $matchesPlayedByTeam);
+        }
+
+        private function matchesPlayedByTeamInRounds(Team $team, array $rounds): array {
+            return array_reduce($rounds, function ($matches, Round $round) use ($team){
+                return array_merge($matches, $round->getMatchesPlayedBy($team));
+            }, []);
+        }
+
         private function round_robin(array &$array) {
             array_unshift($array, array_splice($array, -2, 1)[0]);
         }
+
     }
