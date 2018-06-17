@@ -10,6 +10,7 @@
         "phpunit/phpunit": "~3.7"
     },
    "scripts": {
+        "run": "League\\Run::execute",
         "test": "phpunit",
         "test-checklist": "phpunit --testdox"
     }
