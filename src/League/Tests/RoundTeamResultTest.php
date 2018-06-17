@@ -15,6 +15,8 @@
     const ONE_GOAL = 1;
     const TWO_GOALS = 2;
 
+    const THREE_POINTS = 3;
+
     class RoundTeamResultTest extends \PHPUnit_Framework_TestCase {
 
         /**
@@ -37,5 +39,6 @@
             $this->assertEquals(TWO_GOALS, $result->goalsFor, 'Team A should have score two goals');
             $this->assertEquals(ONE_GOAL, $result->goalsAgainst, 'Team A should have one goal against');
             $this->assertEquals(ONE_GOAL, $result->goalDifference, 'Team A difference should be 1 (= 2 for - 1 against)');
+            $this->assertEquals(THREE_POINTS, $result->points, "Tam A should have 3 points as it has won the only match");
         }
     }

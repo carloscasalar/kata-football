@@ -46,4 +46,15 @@
 
             return $goals;
         }
+
+        public function points($team) {
+            $points = 0;
+            if ($this->home_team->equals($team)) {
+                $points = $this->home_points;
+            } elseif ($this->away_team->equals($team)) {
+                $points = $this->away_points;
+            }
+
+            return $points;
+        }
     }
