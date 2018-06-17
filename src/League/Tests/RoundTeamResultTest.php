@@ -26,7 +26,7 @@
 
             $round = new Round(FIRST_ROUND);
 
-            $round->matches[] = new Match($teamA, $teamB, TWO_GOALS, ZERO_GOALS);
+            $round->matches[] = new Match($teamA, $teamB, TWO_GOALS, ONE_GOAL);
 
             $league = new League([$teamA, $teamB]);
             $league->rounds[] = $round;
@@ -35,5 +35,6 @@
 
             $this->assertEquals(ONE_MATCH, $result->numberOfMatchesPlayed, 'Team A should have play one match');
             $this->assertEquals(TWO_GOALS, $result->goalsFor, 'Team A should have score two goals');
+            $this->assertEquals(ONE_GOAL, $result->goalsAgainst, 'Team A should have one goal against');
         }
     }

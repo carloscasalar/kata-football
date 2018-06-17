@@ -35,4 +35,15 @@
 
             return $goals;
         }
+
+        public function goalsScoredAgainst($team) {
+            $goals = 0;
+            if ($this->home_team->equals($team)) {
+                $goals = $this->away_score;
+            } elseif ($this->away_team->equals($team)) {
+                $goals = $this->home_score;
+            }
+
+            return $goals;
+        }
     }
