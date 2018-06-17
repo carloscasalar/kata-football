@@ -98,3 +98,7 @@ Also there is a little bug if the number of teams are not even. It should be fix
 Final exercise could be launched through composer with the `run` script:
 
     docker run --rm -it -v /YOUR/LOCAL/PROJECTS/DIR/kata-football:/opt -w /opt shippingdocker/php-composer:latest composer run-script run
+    
+This script launch the script for an odd number of teams (13):    
+
+    docker run --rm -it -v /YOUR/LOCAL/PROJECTS/DIR/kata-football:/opt -w /opt shippingdocker/php-composer:latest composer run-script run-13

@@ -11,6 +11,7 @@
     },
    "scripts": {
         "run": "League\\Run::execute",
+        "run-13": "League\\Run::execute_with_13_teams",
         "test": "phpunit",
         "test-checklist": "phpunit --testdox"
     }

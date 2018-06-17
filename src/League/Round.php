@@ -22,13 +22,22 @@
                     $homeTeam = array_reverse($teams)[$matchIndex];
                     $awayTeam = $teams[$matchIndex];
                 }
-                $this->matches[] = new Match(
-                    $homeTeam,
-                    $awayTeam,
-                    rand(0, 5),
-                    rand(0, 5));
+
+                if($this->doBothTeamsPlay($homeTeam, $awayTeam)){
+                    $this->matches[] = new Match(
+                        $homeTeam,
+                        $awayTeam,
+                        rand(0, 5),
+                        rand(0, 5));
+                }
             }
         }
+
+        private function doBothTeamsPlay(Team $homeTeam, Team $awayTeam): bool{
+            return $homeTeam->doPlay() && $awayTeam->doPlay();
+        }
+
+
 
         private function isEvenRound(): bool {
             return $this->number % 2;
