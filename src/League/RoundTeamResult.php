@@ -13,7 +13,7 @@
         public $goalDifference;
         public $points;
 
-        public function __construct(Team $team, array $matchesPlayed) {
+        public function __construct(Team $team, array $matchesPlayed = []) {
             $this->team = $team;
 
             $this->numberOfMatchesPlayed = count($matchesPlayed);
