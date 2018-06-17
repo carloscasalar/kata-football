@@ -14,6 +14,7 @@
         public $numberOfMatchesPlayed;
         public $goalsFor;
         public $goalsAgainst;
+        public $goalDifference;
 
         public function __construct(Team $team, array $matchesPlayed) {
             $this->team = $team;
@@ -27,5 +28,7 @@
             $this->goalsAgainst = array_reduce($matchesPlayed, function(int $goalsAgainst, Match $match) use ($team){
                 return $goalsAgainst + $match->goalsScoredAgainst($team);
             }, 0);
+
+            $this->goalDifference = $this->goalsFor - $this->goalsAgainst;
         }
     }

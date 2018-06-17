@@ -36,5 +36,6 @@
             $this->assertEquals(ONE_MATCH, $result->numberOfMatchesPlayed, 'Team A should have play one match');
             $this->assertEquals(TWO_GOALS, $result->goalsFor, 'Team A should have score two goals');
             $this->assertEquals(ONE_GOAL, $result->goalsAgainst, 'Team A should have one goal against');
+            $this->assertEquals(ONE_GOAL, $result->goalDifference, 'Team A difference should be 1 (= 2 for - 1 against)');
         }
     }
