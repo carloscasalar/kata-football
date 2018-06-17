@@ -20,4 +20,19 @@
                 $this->away_points = 1;
             }
         }
+
+        public function doTeamPlay(Team $team): bool {
+            return $this->home_team->equals($team) || $this->away_team->equals($team);
+        }
+
+        public function goalsScoredBy(Team $team): int {
+            $goals = 0;
+            if ($this->home_team->equals($team)) {
+                $goals = $this->home_score;
+            } elseif ($this->away_team->equals($team)) {
+                $goals = $this->away_score;
+            }
+
+            return $goals;
+        }
     }

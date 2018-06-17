@@ -37,4 +37,10 @@
         private function isOddRound(): bool {
             return !$this->isEvenRound();
         }
+
+        public function getMatchesPlayedBy(Team $team): array {
+            return array_filter($this->matches, function (Match $match) use ($team){
+                return $match->doTeamPlay($team);
+            });
+        }
     }
