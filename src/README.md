@@ -94,3 +94,7 @@ The team list should by ordered by:
  * If there is a tie then arbitrary.
  
 Also there is a little bug if the number of teams are not even. It should be fixed. 
+
+Final exercise could be launched through composer with the `run` script:
+
+    docker run --rm -it -v /YOUR/LOCAL/PROJECTS/DIR/kata-football:/opt -w /opt shippingdocker/php-composer:latest composer run-script run
