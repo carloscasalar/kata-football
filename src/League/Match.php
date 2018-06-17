@@ -68,4 +68,15 @@
 
             return $didWin;
         }
+
+        public function didTeamLost($team): bool {
+            $didLost = false;
+            if ($this->home_team->equals($team)) {
+                $didLost = ($this->home_score < $this->away_score);
+            } elseif ($this->away_team->equals($team)) {
+                $didLost = ($this->away_score < $this->home_score);
+            }
+
+            return $didLost;
+        }
     }

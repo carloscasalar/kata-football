@@ -10,6 +10,7 @@
     const FIRST_ROUND = 1;
 
     const ONE_MATCH = 1;
+    const ZERO_MATCHES = 0;
 
     const ZERO_GOALS = 0;
     const ONE_GOAL = 1;
@@ -33,13 +34,17 @@
             $league = new League([$teamA, $teamB]);
             $league->rounds[] = $round;
 
-            $result = $league->getTeamResultForRound($teamA, FIRST_ROUND);
+            $teamAResult = $league->getTeamResultForRound($teamA, FIRST_ROUND);
+            $this->assertEquals(ONE_MATCH, $teamAResult->numberOfMatchesPlayed, 'Team A should have play one match');
+            $this->assertEquals(TWO_GOALS, $teamAResult->goalsFor, 'Team A should have score two goals');
+            $this->assertEquals(ONE_GOAL, $teamAResult->goalsAgainst, 'Team A should have one goal against');
+            $this->assertEquals(ONE_GOAL, $teamAResult->goalDifference, 'Team A difference should be 1 (= 2 for - 1 against)');
+            $this->assertEquals(THREE_POINTS, $teamAResult->points, "Tam A should have 3 points as it has won the only match");
+            $this->assertSame(ONE_MATCH, $teamAResult->wins, "Tam A should have won one match");
+            $this->assertSame(ZERO_MATCHES, $teamAResult->lost, "Tam A should have lost zero matches");
 
-            $this->assertEquals(ONE_MATCH, $result->numberOfMatchesPlayed, 'Team A should have play one match');
-            $this->assertEquals(TWO_GOALS, $result->goalsFor, 'Team A should have score two goals');
-            $this->assertEquals(ONE_GOAL, $result->goalsAgainst, 'Team A should have one goal against');
-            $this->assertEquals(ONE_GOAL, $result->goalDifference, 'Team A difference should be 1 (= 2 for - 1 against)');
-            $this->assertEquals(THREE_POINTS, $result->points, "Tam A should have 3 points as it has won the only match");
-            $this->assertSame(ONE_MATCH, $result->wins, "Tam A should have won one match");
+            $teamBResult = $league->getTeamResultForRound($teamB, FIRST_ROUND);
+            $this->assertSame(ONE_MATCH, $teamBResult->lost, "Tam B should have lost one matches");
+
         }
     }
