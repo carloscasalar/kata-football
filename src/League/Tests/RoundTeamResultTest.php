@@ -8,21 +8,6 @@
     use League\RoundTeamResult;
     use League\Team;
 
-    const FIRST_ROUND = 1;
-    const SECOND_ROUND = 2;
-
-    const ZERO_MATCHES = 0;
-    const ONE_MATCH = 1;
-    const TWO_MATCHES = 2;
-
-    const ZERO_GOALS = 0;
-    const ONE_GOAL = 1;
-    const TWO_GOALS = 2;
-    const THREE_GOALS = 3;
-
-    const THREE_POINTS = 3;
-    const SIX_POINTS = 6;
-
     class RoundTeamResultTest extends \PHPUnit_Framework_TestCase {
         private $teamA;
         private $teamB;
@@ -35,34 +20,35 @@
             $this->teamC = new Team("C");
             $this->teamD = new Team("D");
         }
+
         /**
          * @test
          */
         public function a_league_A_and_B_teams_with_one_round_where_A_wins() {
-            $round = new Round(FIRST_ROUND);
+            $round = new Round(TestConst::FIRST_ROUND);
 
-            $round->matches[] = new Match($this->teamA, $this->teamB, TWO_GOALS, ONE_GOAL);
+            $round->matches[] = new Match($this->teamA, $this->teamB, TestConst::TWO_GOALS, TestConst::ONE_GOAL);
 
             $league = new League([$this->teamA, $this->teamB]);
             $league->rounds[] = $round;
 
-            $teamAResult = $league->getTeamResultForRound($this->teamA, FIRST_ROUND);
-            $this->assertSame(ONE_MATCH, $teamAResult->numberOfMatchesPlayed, 'Team A should have play one match');
-            $this->assertSame(TWO_GOALS, $teamAResult->goalsFor, 'Team A should have score two goals');
-            $this->assertSame(ONE_GOAL, $teamAResult->goalsAgainst, 'Team A should have one goal against');
-            $this->assertSame(ONE_GOAL, $teamAResult->goalDifference, 'Team A difference should be 1 (= 2 for - 1 against)');
-            $this->assertSame(THREE_POINTS, $teamAResult->points, "Tam A should have 3 points as it has won the only match");
-            $this->assertSame(ONE_MATCH, $teamAResult->wins, "Tam A should have won one match");
-            $this->assertSame(ZERO_MATCHES, $teamAResult->lost, "Tam A should have lost zero matches");
-            $this->assertSame(ZERO_MATCHES, $teamAResult->draws, "Tam A should have tied zero matches");
+            $teamAResult = $league->getTeamResultForRound($this->teamA, TestConst::FIRST_ROUND);
+            $this->assertSame(TestConst::ONE_MATCH, $teamAResult->numberOfMatchesPlayed, 'Team A should have play one match');
+            $this->assertSame(TestConst::TWO_GOALS, $teamAResult->goalsFor, 'Team A should have score two goals');
+            $this->assertSame(TestConst::ONE_GOAL, $teamAResult->goalsAgainst, 'Team A should have one goal against');
+            $this->assertSame(TestConst::ONE_GOAL, $teamAResult->goalDifference, 'Team A difference should be 1 (= 2 for - 1 against)');
+            $this->assertSame(TestConst::THREE_POINTS, $teamAResult->points, "Tam A should have 3 points as it has won the only match");
+            $this->assertSame(TestConst::ONE_MATCH, $teamAResult->wins, "Tam A should have won one match");
+            $this->assertSame(TestConst::ZERO_MATCHES, $teamAResult->lost, "Tam A should have lost zero matches");
+            $this->assertSame(TestConst::ZERO_MATCHES, $teamAResult->draws, "Tam A should have tied zero matches");
 
-            $teamBResult = $league->getTeamResultForRound($this->teamB, FIRST_ROUND);
-            $this->assertSame(ONE_MATCH, $teamBResult->lost, "Tam B should have lost one matches");
-            $this->assertSame(ZERO_MATCHES, $teamBResult->draws, "Tam B should have tied zero matches");
+            $teamBResult = $league->getTeamResultForRound($this->teamB, TestConst::FIRST_ROUND);
+            $this->assertSame(TestConst::ONE_MATCH, $teamBResult->lost, "Tam B should have lost one matches");
+            $this->assertSame(TestConst::ZERO_MATCHES, $teamBResult->draws, "Tam B should have tied zero matches");
         }
 
         /**
-         * Teams: A, B, C, D
+         * Creates a League of four teams: A, B, C, D
          *
          * First round matches:
          *   A vs B: 1 - 0
@@ -89,13 +75,13 @@
          *   D      2     0    2   0    2    2         0        2
          */
         private function ligueOfFourTeamsAndTwoRounds(): League {
-            $firstRound = new Round(FIRST_ROUND);
-            $firstRound->matches[] = new Match($this->teamA, $this->teamB, ONE_GOAL, ZERO_GOALS);
-            $firstRound->matches[] = new Match($this->teamC, $this->teamD, ZERO_GOALS, ZERO_GOALS);
+            $firstRound = new Round(TestConst::FIRST_ROUND);
+            $firstRound->matches[] = new Match($this->teamA, $this->teamB, TestConst::ONE_GOAL, TestConst::ZERO_GOALS);
+            $firstRound->matches[] = new Match($this->teamC, $this->teamD, TestConst::ZERO_GOALS, TestConst::ZERO_GOALS);
 
-            $secondRound = new Round(SECOND_ROUND);
-            $secondRound->matches[] = new Match($this->teamA, $this->teamC, TWO_GOALS, ONE_GOAL);
-            $secondRound->matches[] = new Match($this->teamB, $this->teamD, TWO_GOALS, TWO_GOALS);
+            $secondRound = new Round(TestConst::SECOND_ROUND);
+            $secondRound->matches[] = new Match($this->teamA, $this->teamC, TestConst::TWO_GOALS, TestConst::ONE_GOAL);
+            $secondRound->matches[] = new Match($this->teamB, $this->teamD, TestConst::TWO_GOALS, TestConst::TWO_GOALS);
 
             $league = new League([$this->teamA, $this->teamB]);
             $league->rounds = [$firstRound, $secondRound];
@@ -127,23 +113,23 @@
             $league = $this->ligueOfFourTeamsAndTwoRounds();
 
             $expectedResultForTeamARoundOne = $this->resultString(
-                "A", ONE_MATCH, // teamName, played
-                ONE_MATCH, ZERO_MATCHES, ZERO_MATCHES, // won, draw, lost
-                ONE_GOAL, ZERO_GOALS, ONE_GOAL, // for, against, diff
-                THREE_POINTS // points
+                "A", TestConst::ONE_MATCH, // teamName, played
+                TestConst::ONE_MATCH, TestConst::ZERO_MATCHES, TestConst::ZERO_MATCHES, // won, draw, lost
+                TestConst::ONE_GOAL, TestConst::ZERO_GOALS, TestConst::ONE_GOAL, // for, against, diff
+                TestConst::THREE_POINTS // points
             );
 
-            $resultForTeamARoundOne = $this->formatResult($league->getTeamResultForRound($this->teamA, FIRST_ROUND));
+            $resultForTeamARoundOne = $this->formatResult($league->getTeamResultForRound($this->teamA, TestConst::FIRST_ROUND));
             $this->assertSame($expectedResultForTeamARoundOne, $resultForTeamARoundOne, "Team A results form round one does not match");
 
             $expectedResultForTeamARoundTwo = $this->resultString(
-                "A", TWO_MATCHES, // teamName, played
-                TWO_MATCHES, ZERO_MATCHES, ZERO_MATCHES, // won, draw, lost
-                THREE_GOALS, ONE_GOAL, TWO_GOALS, // for, against, diff
-                SIX_POINTS // points
+                "A", TestConst::TWO_MATCHES, // teamName, played
+                TestConst::TWO_MATCHES, TestConst::ZERO_MATCHES, TestConst::ZERO_MATCHES, // won, draw, lost
+                TestConst::THREE_GOALS, TestConst::ONE_GOAL, TestConst::TWO_GOALS, // for, against, diff
+                TestConst::SIX_POINTS // points
             );
 
-            $resultForTeamARoundTwo = $this->formatResult($league->getTeamResultForRound($this->teamA, SECOND_ROUND));
+            $resultForTeamARoundTwo = $this->formatResult($league->getTeamResultForRound($this->teamA, TestConst::SECOND_ROUND));
             $this->assertSame($expectedResultForTeamARoundTwo, $resultForTeamARoundTwo, "Team A results form round two does not match");
         }
 
