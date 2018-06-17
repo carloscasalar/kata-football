@@ -79,4 +79,8 @@
 
             return $didLost;
         }
+
+        public function isDraw(): bool {
+            return ($this->home_score === $this->away_score);
+        }
     }

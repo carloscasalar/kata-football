@@ -13,6 +13,7 @@
         public $numberOfMatchesPlayed;
         public $wins;
         public $lost;
+        public $draws;
         public $goalsFor;
         public $goalsAgainst;
         public $goalDifference;
@@ -43,6 +44,10 @@
 
             $this->lost = array_reduce($matchesPlayed, function (int $totalLost, Match $match) use ($team) {
                 return $totalLost + ($match->didTeamLost($team) ? 1 : 0);
+            }, 0);
+
+            $this->draws = array_reduce($matchesPlayed, function (int $totalDraws, Match $match) {
+                return $totalDraws + ($match->isDraw() ? 1 : 0);
             }, 0);
 
         }

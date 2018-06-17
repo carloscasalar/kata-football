@@ -42,9 +42,11 @@
             $this->assertSame(THREE_POINTS, $teamAResult->points, "Tam A should have 3 points as it has won the only match");
             $this->assertSame(ONE_MATCH, $teamAResult->wins, "Tam A should have won one match");
             $this->assertSame(ZERO_MATCHES, $teamAResult->lost, "Tam A should have lost zero matches");
+            $this->assertSame(ZERO_MATCHES, $teamAResult->draws, "Tam A should have tied zero matches");
 
             $teamBResult = $league->getTeamResultForRound($teamB, FIRST_ROUND);
             $this->assertSame(ONE_MATCH, $teamBResult->lost, "Tam B should have lost one matches");
+            $this->assertSame(ZERO_MATCHES, $teamBResult->draws, "Tam B should have tied zero matches");
 
         }
     }
