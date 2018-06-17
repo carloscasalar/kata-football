@@ -35,11 +35,11 @@
             $league->rounds[] = $round;
 
             $teamAResult = $league->getTeamResultForRound($teamA, FIRST_ROUND);
-            $this->assertEquals(ONE_MATCH, $teamAResult->numberOfMatchesPlayed, 'Team A should have play one match');
-            $this->assertEquals(TWO_GOALS, $teamAResult->goalsFor, 'Team A should have score two goals');
-            $this->assertEquals(ONE_GOAL, $teamAResult->goalsAgainst, 'Team A should have one goal against');
-            $this->assertEquals(ONE_GOAL, $teamAResult->goalDifference, 'Team A difference should be 1 (= 2 for - 1 against)');
-            $this->assertEquals(THREE_POINTS, $teamAResult->points, "Tam A should have 3 points as it has won the only match");
+            $this->assertSame(ONE_MATCH, $teamAResult->numberOfMatchesPlayed, 'Team A should have play one match');
+            $this->assertSame(TWO_GOALS, $teamAResult->goalsFor, 'Team A should have score two goals');
+            $this->assertSame(ONE_GOAL, $teamAResult->goalsAgainst, 'Team A should have one goal against');
+            $this->assertSame(ONE_GOAL, $teamAResult->goalDifference, 'Team A difference should be 1 (= 2 for - 1 against)');
+            $this->assertSame(THREE_POINTS, $teamAResult->points, "Tam A should have 3 points as it has won the only match");
             $this->assertSame(ONE_MATCH, $teamAResult->wins, "Tam A should have won one match");
             $this->assertSame(ZERO_MATCHES, $teamAResult->lost, "Tam A should have lost zero matches");
 
