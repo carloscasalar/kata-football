@@ -2,8 +2,6 @@
 
     namespace League;
 
-    use function PHPSTORM_META\map;
-
     class League {
         public $teams;
         public $rounds = [];
@@ -29,16 +27,18 @@
             }
         }
 
-        public function getTeamResultForRound($team, $FIRST_ROUND): RoundTeamResult {
-            $matchesPlayedByTeam = $this->matchesPlayedBy($team);
+        public function getTeamResultForRound($team, $numberOfRound): RoundTeamResult {
+            $roundsPlayed = array_filter($this->rounds, function (Round $round) use ($numberOfRound){
+               return $round->number <= $numberOfRound;
+            });
 
-
+            $matchesPlayedByTeam = $this->matchesPlayedByTeamInRounds($team, $roundsPlayed);
 
             return new RoundTeamResult($team, $matchesPlayedByTeam);
         }
 
-        private function matchesPlayedBy(Team $team): array {
-            return array_reduce($this->rounds, function ($matches, Round $round) use ($team){
+        private function matchesPlayedByTeamInRounds(Team $team, array $rounds): array {
+            return array_reduce($rounds, function ($matches, Round $round) use ($team){
                 return array_merge($matches, $round->getMatchesPlayedBy($team));
             }, []);
         }
