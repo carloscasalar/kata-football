@@ -36,7 +36,7 @@
             return $goals;
         }
 
-        public function goalsScoredAgainst($team) {
+        public function goalsScoredAgainst(Team $team): int {
             $goals = 0;
             if ($this->home_team->equals($team)) {
                 $goals = $this->away_score;
@@ -47,7 +47,7 @@
             return $goals;
         }
 
-        public function points($team) {
+        public function points(Team $team): int {
             $points = 0;
             if ($this->home_team->equals($team)) {
                 $points = $this->home_points;
@@ -56,5 +56,16 @@
             }
 
             return $points;
+        }
+
+        public function didTeamWin(Team $team): bool {
+            $didWin = false;
+            if ($this->home_team->equals($team)) {
+                $didWin = ($this->home_score > $this->away_score);
+            } elseif ($this->away_team->equals($team)) {
+                $didWin = ($this->away_score > $this->home_score);
+            }
+
+            return $didWin;
         }
     }

@@ -40,5 +40,6 @@
             $this->assertEquals(ONE_GOAL, $result->goalsAgainst, 'Team A should have one goal against');
             $this->assertEquals(ONE_GOAL, $result->goalDifference, 'Team A difference should be 1 (= 2 for - 1 against)');
             $this->assertEquals(THREE_POINTS, $result->points, "Tam A should have 3 points as it has won the only match");
+            $this->assertSame(ONE_MATCH, $result->wins, "Tam A should have won one match");
         }
     }
