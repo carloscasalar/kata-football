@@ -1,10 +1,4 @@
 <?php
-    /**
-     * Created by IntelliJ IDEA.
-     * User: carloscasalar
-     * Date: 16/6/18
-     * Time: 23:32
-     */
 
     namespace League;
 
